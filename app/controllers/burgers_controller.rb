@@ -1,8 +1,7 @@
 class BurgersController < ApplicationController
 
   def index
-    name = params[:name]
-    @burgers = Burger.search(name)
+    @burgers = Burger.all
     json_response(@burgers)
   end
 
@@ -37,6 +36,6 @@ class BurgersController < ApplicationController
   private
 
   def burger_params
-    params.permit(:author, :content)
+    params.permit(:name, :description, :inspiration, :drink_special, :address, :hours_of_availability)
   end
 end
