@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+class Seed
+
+  def self.begin
+    
+    seed = Seed.new
+    seed.generate_quotes
+  end
+
+  def generate_burgers
+    37.times do |i|
+      burger = Burger.create!(
+        name: Faker::Food.dish
+        description: Faker::Food.description
+        inspiration: Faker::
+        drink_special: Faker::Beer.name
+        address: Faker::
+        hours_of_availability: Faker::
+      )
+end
