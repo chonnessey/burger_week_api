@@ -6,12 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Burger.destroy_all
+Review.destroy_all
+
 class Seed
 
   def self.begin
     
     seed = Seed.new
     seed.generate_burgers
+    seed.generate_reviews
   end
 
   def generate_burgers
@@ -26,6 +30,23 @@ class Seed
       )
       puts "#{burger.name} burger created!"
     end
+  end
+
+  def generate_reviews
+
+    @burgers = Burger.all
+
+    @burgers.each do |burger|
+    rand(0..5).times do
+      Review.create!(
+        author: Faker::Name.name,
+        rating: rand(1..5),
+        content: Faker::Hipster.sentences(number: 3).join(" "),
+        burger_id: burger.id,
+      )
+      end
+    end
+    p "Created #{Review.count} Reviews for #{Burger.count} burgers."
   end
 end
 

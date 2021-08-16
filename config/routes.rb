@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :burgers
+  resources :burgers do
+    resources :reviews
+  end
 end
