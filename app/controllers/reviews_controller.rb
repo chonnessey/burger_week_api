@@ -36,16 +36,16 @@ before_action :set_burger_review, only: [:show, :update, :destroy]
   end
 
   private
-    def review_params
-      params.permit(:author, :rating, :content)
-    end
+  
+  def review_params
+    params.permit(:author, :rating, :content)
+  end
 
-    def set_burger
-      @burger= Burger.find(params[:burger_id])
-    end
+  def set_burger
+    @burger= Burger.find(params[:burger_id])
+  end
 
-    def set_burger_review
-      @review = @burger.reviews.find_by!(id: params[:id]) if @burger
-    end
-
+  def set_burger_review
+    @review = @burger.reviews.find_by!(id: params[:id]) if @burger
+  end
 end
