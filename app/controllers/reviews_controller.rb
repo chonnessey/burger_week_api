@@ -1,19 +1,19 @@
 class ReviewsController < ApplicationController
+before_action :set_burger
+before_action :set_burger_review, only: [:show, :update, :destroy]
 
   def index
-    @reviews = Review.where(burger_id: params[:burger_id])
-    json_response(@reviews)
+    json_response(@burger.reviews)
   end
   
   def create
-    @burger = Burger.find(params[:burger_id])
-    @review = @burger.reviews.create!(review_params)
-    json_response(@review, :created)
+    @burger.reviews.create!(review_params)
+    # @review = Review.find(params[:id])
+    # @review = @burger.reviews.create!(review_params)
+    json_response(@burger.reviews.last, :created)
   end
 
   def show
-    @burger = Burger.find(params[:burger_id])
-    @review = Review.find(params[:id])
     json_response(@review)
   end
 
@@ -37,7 +37,15 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:author, :rating, :content)
+      params.permit(:author, :rating, :content)
+    end
+
+    def set_burger
+      @burger= Burger.find(params[:burger_id])
+    end
+
+    def set_burger_review
+      @review = @burger.reviews.find_by!(id: params[:id]) if @burger
     end
 
 end

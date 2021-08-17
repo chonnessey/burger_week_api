@@ -38,4 +38,8 @@ class BurgersController < ApplicationController
   def burger_params
     params.permit(:name, :description, :inspiration, :drink_special, :address, :hours_of_availability)
   end
+
+  def set_burger
+    @burger = Burger.find(params[:id])
+  end
 end
