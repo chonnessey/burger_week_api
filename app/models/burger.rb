@@ -13,10 +13,11 @@ class Burger < ApplicationRecord
       )}
 
   scope :top_five, -> {
-    (select("burgers.id, burgers.name")
+    (select("burgers.id, burgers.name, AVG(reviews.rating) as reviews_average")
       .joins(:reviews)
       .group('burgers.id')
-      .order('AVG(reviews.rating) DESC')
+      .order('reviews_average')
+      .reverse_order
       .limit(5)
       )}
         
