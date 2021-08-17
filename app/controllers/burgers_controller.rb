@@ -33,6 +33,11 @@ class BurgersController < ApplicationController
     end
   end
 
+  def dealz
+    @burgers = Burger.all.dealz
+    json_response(@burgers, 200)
+  end
+  
   private
 
   def burger_params
