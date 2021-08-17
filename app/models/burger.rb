@@ -10,7 +10,8 @@ class Burger < ApplicationRecord
       .order("reviews_count")
       .reverse_order
       .limit(5)
-      )}
+    )
+  }
 
   scope :top_five, -> {
     (select("burgers.id, burgers.name, AVG(reviews.rating) as reviews_average")
@@ -19,8 +20,9 @@ class Burger < ApplicationRecord
       .order('reviews_average')
       .reverse_order
       .limit(5)
-      )}
-        
+    )
+  }
+
   def avg_rating
     if self.reviews.size > 0
       return (self.reviews.sum(:rating).to_f / self.reviews.size.to_f).to_f.round

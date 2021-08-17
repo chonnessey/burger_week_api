@@ -51,6 +51,11 @@ class BurgersController < ApplicationController
     json_response(@burgers, 200)
   end
 
+  def rando
+    @burger = Burger.order('RANDOM()').first
+    json_response(@burger,200)
+  end
+
   private
 
   def burger_params
