@@ -3,5 +3,6 @@ class Burger < ApplicationRecord
   [:name, :description, :inspiration, :address, :hours_of_availability].each do |field|
     validates field, presence: true
   end
-
+  
+  scope :dealz, -> { where("drink_special != NULL") }
 end
