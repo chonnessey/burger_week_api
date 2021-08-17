@@ -1,7 +1,14 @@
 require 'rails_helper'
 
-describe "get all burgers route", :type => :request do 
+describe "GET burger routes", :type => :request do 
   let!(:burgers) {FactoryBot.create_list(:burger, 20)}
+  let(:burger_id) {burgers.first.id}
+
+  it 'returns a single burger' do
+    get "/burgers/#{burger_id}"
+    expect(JSON.parse(response.body)).not_to be_empty
+    expect(json['id']).to eq(burger_id)
+  end
 
   before { get '/burgers'}
 
@@ -41,5 +48,15 @@ describe "PUT /burgers/:id", :type => :request do
   it 'returns success message' do
     put "/burgers/#{burger_id}", params: { :name => 'Michael', :description => 'test_description', :inspiration => "test_inspiration", :address => "test_address", :hours_of_availability => "test_hours", :drink_special => "test_drink_special" }
     expect(response.body).to match('This burger has been updated successfully.')
+  end
+end
+
+describe 'DELETE /burgers/:id', :type => :request do
+  let!(:burgers) {FactoryBot.create_list(:burger, 1)}
+  let(:burger_id) {burgers.first.id}
+
+  it 'returns a success message' do
+    delete "/burgers/#{burger_id}"
+    expect(response.body).to match('This burger has been successfully destroyed.')
   end
 end
