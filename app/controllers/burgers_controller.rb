@@ -37,7 +37,15 @@ class BurgersController < ApplicationController
     @burgers = Burger.all.dealz
     json_response(@burgers, 200)
   end
-  
+
+  def top_five
+    @burgers = Burger.all.top_five.each do |burger|
+      burger[:name] = Burger.find(burger.id).name
+      burger[:description] = Burger.find(burger.id).description
+    end
+    json_response(@burgers, 200)
+  end
+
   private
 
   def burger_params
