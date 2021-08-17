@@ -62,7 +62,7 @@ RSpec.describe 'Reviews API' do
     end
   end
 
-  # Test suite for PUT /burgers/:burger_id/reviews
+  # Test suite for POST /burgers/:burger_id/reviews
   describe 'POST /burgers/:burger_id/reviews' do
     let(:valid_attributes) { { author: 'Mozart', content: 'content', rating: 5 } }
 

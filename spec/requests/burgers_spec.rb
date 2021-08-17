@@ -32,3 +32,14 @@ describe "post a burger route", :type => :request do
     expect(response).to have_http_status(:created)
   end
 end
+
+describe "PUT /burgers/:id", :type => :request do
+
+  let!(:burgers) {FactoryBot.create_list(:burger, 1)}
+  let(:burger_id) {burgers.first.id}
+
+  it 'returns success message' do
+    put "/burgers/#{burger_id}", params: { :name => 'Michael', :description => 'test_description', :inspiration => "test_inspiration", :address => "test_address", :hours_of_availability => "test_hours", :drink_special => "test_drink_special" }
+    expect(response.body).to match('This burger has been updated successfully.')
+  end
+end
