@@ -535,6 +535,18 @@
           null
         ]
       },
+      "/Users/chonnessey/escuela/burger_week_api/spec/models/review_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          null
+        ]
+      },
       "/Users/chonnessey/escuela/burger_week_api/spec/requests/burgers_spec.rb": {
         "lines": [
           1,
@@ -717,6 +729,6 @@
         ]
       }
     },
-    "timestamp": 1629223392
+    "timestamp": 1629223563
   }
 }
