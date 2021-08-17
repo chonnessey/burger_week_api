@@ -4,5 +4,5 @@ class Burger < ApplicationRecord
     validates field, presence: true
   end
   
-  scope :dealz, -> { where("drink_special != NULL") }
+  scope :dealz, -> { where.not(drink_special: '') }
 end
