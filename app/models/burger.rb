@@ -3,6 +3,8 @@ class Burger < ApplicationRecord
   [:name, :description, :inspiration, :address, :hours_of_availability].each do |field|
     validates field, presence: true
   end
+
+  scope :dealz, -> { where.not(drink_special: '') }
   scope :most_five, -> {
     (select('burgers.id, count(reviews.id) as reviews_count')
       .joins(:reviews)
